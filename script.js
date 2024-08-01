@@ -1,19 +1,31 @@
-
-
-form.addEventListener('submit',(e)=>{
-	e.preventDefault()
-	checkAge(age.value, name.value).then(data=>alert(data))
-							.catch(data=>alert(data))
-})
-
-
-async function checkAge(age,name){
-	return new Promise((res, rej)=>{
-		if(age>18){
-			setTimeout(()=>res(`Welcome, ${name}. You can vote.`),4000)
-		}
-		else{
-			setTimeout(()=>res(`Oh sorry ${name}. You aren't old enough.`),4000)
-		}
-	})
+let formbutton = document.getElementById("btn");
+function promiseApi1(name , age)
+{
+ return new Promise((resolve , reject) => {
+        setTimeout(() => {
+            if(age > 18)
+            {
+                resolve(
+                    alert(`Welcome, ${name}. You can vote.`)
+                    // console.log(`You can vote , ${name}`)
+                )
+            }
+            else
+            {
+                 alert(`Oh sorry ${name}. You aren't old enough.`)
+            }
+        } , 4000)
+ })
 }
+formbutton.addEventListener("click" , (event) => {
+    event.preventDefault();
+    let nameinput = document.getElementById("name").value;
+    let ageinput = document.getElementById("age").value;
+    if (nameinput == "" && ageinput == "") {
+        alert("Please enter valid details")
+    }
+    else
+    {
+        promiseApi1(nameinput , ageinput);
+    }
+})
